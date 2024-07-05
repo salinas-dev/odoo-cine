@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="factura_cine_ticket">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="cine.factura_cine_ticket_report" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+    <template id="factura_cine_ticket_report">
+        <t t-call="web.external_layout">
+            <div class="page" style="font-family: Arial, sans-serif; color: #333; margin: 20px;">
+                <h1 style="margin-top: 10px; text-align: center; color: #FF5733;">Cine Ticket</h1>
+
+                <div style="margin: 20px 0; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                    <!-- Otros campos de la factura -->
+                    <p style="font-size: 18px; margin: 5px 0;">Cliente: <span t-field="o.partner_id.name" style="font-weight: bold;"/></p>
+                    <p style="font-size: 18px; margin: 5px 0;">Fecha: <span t-field="o.invoice_date" style="font-weight: bold;"/></p>
+                </div>
+
+                <div style="margin: 20px 0; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                    <!-- Ejemplo de cómo acceder a los campos de la función -->
+                    <p style="font-size: 18px; margin: 5px 0;">Sala: <span t-if="o.funcion_id" style="font-weight: bold;"><span t-field="o.funcion_id.sala_id.name"/></span></p>
+                    <p style="font-size: 18px; margin: 5px 0;">Función: <span t-if="o.funcion_id" style="font-weight: bold;"><span t-field="o.funcion_id.name"/></span></p>
+                    <p style="font-size: 18px; margin: 5px 0;">Película: <span t-if="o.funcion_id" style="font-weight: bold;"><span t-field="o.funcion_id.movie_id.name"/></span></p>
+                    <p style="font-size: 18px; margin: 5px 0;">Boletos Vendidos: <span t-if="o.funcion_id" style="font-weight: bold;"><span t-field="o.funcion_id.boletos_vendidos"/></span></p>
+                    <p style="font-size: 18px; margin: 5px 0;">Capacidad de la Sala: <span t-if="o.funcion_id" style="font-weight: bold;"><span t-field="o.funcion_id.sala_id.capacity"/></span></p>
+                </div>
+                    <div style="margin: 20px 0; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                        <p style="font-size: 18px; margin: 5px 0;">Total: <span t-field="o.amount_total" style="font-weight: bold; color: #FF5733;"/></p>
+                    </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="funcion_cine_account_move" model="ir.actions.report">
+        <field name="name">report funcion cine</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cine.factura_cine_ticket</field>
+        <field name="report_file">cine.factura_cine_ticket</field>
+        <field name="print_report_name">(object._get_report_base_filename())</field>
+    </record>
+</odoo>

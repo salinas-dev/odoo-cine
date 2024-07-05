@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <record id="group_cine_user" model="res.groups">
+            <field name="name">Cine User</field>
+            <field name="category_id" ref="base.module_category_user_type"/>
+        </record>
+        <record id="group_cine_manager" model="res.groups">
+            <field name="name">Cine Manager</field>
+            <field name="category_id" ref="base.module_category_user_type"/>
+        </record>
+    </data>
+</odoo>

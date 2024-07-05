@@ -1,0 +1,25 @@
+/* En cine/static/src/css/cine_backend.css */
+.kanban-header {
+    background-color: #f0ad4e; /* Color de fondo para el encabezado */
+    color: #1b35c7; /* Color de texto para el encabezado */
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.oe_kanban_global_click {
+    border: 1px solid #a04c4c; /* Borde del contenedor kanban */
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.oe_kanban_details {
+    padding: 10px;
+}
+
+/* Estilo para las imágenes en Kanban */
+.oe_kanban_image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}

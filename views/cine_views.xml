@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Acción para Películas -->
+        <record id="action_cine_movie" model="ir.actions.act_window">
+            <field name="name">Movies</field>
+            <field name="res_model">cine.movie</field>
+            <field name="view_mode">kanban,search,tree,form</field>
+        </record>
+
+    <!-- Vista tree para Películas -->
+    <record id="view_cine_movie_tree" model="ir.ui.view">
+        <field name="name">cine.movie.tree</field>
+        <field name="model">cine.movie</field>
+        <field name="arch" type="xml">
+            <tree string="Películas">
+                <field name="name"/>
+                <field name="release_date"/>
+                <field name="clasificacion"/>
+                <field name="genero"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista form para Películas -->
+    <record id="view_cine_movie_form" model="ir.ui.view">
+        <field name="name">cine.movie.form</field>
+        <field name="model">cine.movie</field>
+        <field name="arch" type="xml">
+            <form string="Película">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Películas</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <group string="Información General">
+                                <field name="name"/>
+                                <field name="release_date" widget="date"/>
+                                <field name="clasificacion"/>
+                                <field name="genero"/>
+                            </group>
+                            <notebook style="border: 1px solid black">
+                                <page string="Detalles">
+                                    <group name="other_info">
+                                        <field name="description" invisible="context.get('hide_description', False)"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </div>
+                        <div class="col-md-4">
+                            <field name="image" widget="image" filename="image_filename" class="oe_form_field_image"/>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Kanban para Películas -->
+    <record id="view_cine_movie_kanban" model="ir.ui.view">
+        <field name="name">cine.movie.kanban</field>
+        <field name="model">cine.movie</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click card" style="font-family: 'Roboto', sans-serif; background-color: #f8f9fa; border-radius: 8px; padding: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 10px; width: auto; height: auto; border: 1px solid #84b3c2;">
+                            <div class="oe_kanban_details">
+                                <div class="oe_kanban_left">
+                                    <strong><span style="text-transform: uppercase;"><center><field name="name" style="font-size: 20px; color: #c94139;"/></center></span></strong><br/>
+                                </div>
+                                    Género: <field name="genero"/><br/>
+                                    Clasificación: <field name="clasificacion"/><br/>
+                                    Fecha de lanzamiento: <strong><field name="release_date" style="color: #c94139;"/><br/></strong>
+                                <br/>
+                                <div class="oe_kanban_right">
+                                    <field name="image" widget="image" class="oe_kanban_image"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista Búsqueda para Películas -->
+    <record id="view_cine_movie_search" model="ir.ui.view">
+        <field name="name">cine.movie.search</field>
+        <field name="model">cine.movie</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"></field>
+                <field name="clasificacion"/>
+                <field name="genero"/>
+                <filter string="Películas en Cartelera" name="filter_current_movies" domain="[('release_date', '&lt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Nombre" name="group_by_name" context="{'group_by': 'name'}"/>
+                    <filter string="Fecha de lanzamiento" name="group_by_release_date" context="{'group_by': 'release_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</data>
+</odoo>

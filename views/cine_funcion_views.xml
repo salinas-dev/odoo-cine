@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Acción para Funciones -->
+        <record id="action_cine_funcion" model="ir.actions.act_window">
+            <field name="name">Funciones</field>
+            <field name="res_model">cine.funcion</field>
+            <field name="view_mode">kanban,search,tree,form</field>
+        </record>
+
+<!-- Vista Kanban para Funciones -->
+<record id="view_kanban_cine_funcion" model="ir.ui.view">
+    <field name="name">cine.funcion.kanban</field>
+    <field name="model">cine.funcion</field>
+    <field name="arch" type="xml">
+        <kanban>
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click card" style="font-family: 'Roboto', sans-serif; background-color: #f8f9fa; border-radius: 8px; padding: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 10px; width: auto; height: auto; border: 1px solid #84b3c2;">
+                        <!-- Ajusta el tamaño del card con width y height -->
+                        <div class="oe_kanban_details">
+
+                            <div class="row">
+                                <div class="col-md-12 kanban-header">
+                                    <strong>
+                                        <span style="text-transform: uppercase;">
+                                            <center>
+                                                <field string="Función" name="name" style="font-size: 18px; color: #c94139;"/>
+                                            </center>
+                                        </span>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <strong>
+                                        <span style="text-transform: uppercase;">
+                                            <center>
+                                                <field name="movie_id" style="font-size: 22px; color: #84b3c2;"/>
+                                            </center>
+                                        </span>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <span style="font-weight: bold; margin-left: 30px">Sala:</span> 
+                                    <field name="sala_id" style="font-family: 'Roboto', sans-serif; margin-left: 10px;"/>
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <span style="font-weight: bold;"></span> 
+                                    <strong>
+                                        <field name="state" style="font-size: 15px; font-family: 'Roboto', sans-serif; margin-left: 10px; color: #c94139;"/>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span style="font-weight: bold; margin-left: 30px">Tipo de boleto:</span> 
+                                    <field name="tipo_boleto" style="font-family: 'Roboto', sans-serif; margin-left: 10px;"/>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <span style="font-weight: bold; margin-left: 30px">Fecha de estreno:</span> 
+                                    <field name="start_time" style="font-family: 'Roboto', sans-serif; margin-left: 10px;"/><br/>
+                                </div>
+                            </div>
+                            <div class="row" style="border-radius: 10px;">
+                                <div class="col-md-12">
+                                            <field name="image" widget="image" filename="image_filename" class="oe_form_field_image oe_kanban_image" style="border: 2px solid #ede9b4; border-radius: 10px;"/>                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+
+
+
+    <!-- Vista Tree para Funciones -->
+    <record id="view_cine_funcion_tree" model="ir.ui.view">
+        <field name="name">cine.funcion.tree</field>
+        <field name="model">cine.funcion</field>
+        <field name="arch" type="xml">
+            <tree string="Funciones">
+                <field name="movie_id"/>
+                <field name="sala_id"/>
+                <field name="start_time"/>
+                <field name="state"/>
+                <field name="tipo_boleto"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+<!-- Vista Form para Funciones -->
+<record id="view_cine_funcion_form" model="ir.ui.view">
+    <field name="name">cine.funcion.form</field>
+    <field name="model">cine.funcion</field>
+    <field name="arch" type="xml">
+        <form string="Función" class="o_form_view o_form_editable o_form_nosheet">
+            <header>
+                <button type="object" name="create_invoice" class="btn btn-primary">
+                    <i class="fa fa-file-invoice" style="margin-right: 5px;"></i>Generar factura
+                </button>
+                <button string="Generar venta" type="object" name="create_sale_order" class="btn"/>
+                <button string="Activo" type="object" name="action_activo" class="btn btn-primary"/>
+                <button string="Pendiente" type="object" name="action_pendiente" class="btn" style="color: #b0e0e6;"/>
+                <button string="Ocupada" type="object" name="action_ocupado" class="btn btn-warning"/>
+                <button type="object" name="view_invoice_history" class="btn btn-secondary">
+                    <i class="fa fa-file-invoice-dollar" style="margin-right: 5px;"></i>Ver Facturas
+                </button>
+                <field name="state" widget="statusbar" statusbar_visible="activo,pendiente,ocupado"/>
+            </header>
+            <sheet>
+                <div class="oe_title">
+                    <h1>Función</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <group string="Información General">
+                            Nombre: <field string="Función" name="name"/>
+                            Película: <field string="Película" name="movie_id"/>
+                            Tipo de boleto: <field string="Tipo de Boleto" name="tipo_boleto"/>
+                        </group>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <notebook>
+                                <page string="Facturas R">
+                                    <field name="invoice_ids"></field>                                    
+                                </page>
+                                    <page name="detalles" string="Detalles">
+                                        <group>
+                                            Sala: <field name="sala_id"/>
+                                            Fecha de estreno: <field name="start_time"/>
+                                            <field name="current_invoice_id" class="oe_inline" style="width: 40px;" options="{'no_create': True}" />
+                                        </group>
+                                    </page>
+                                </notebook>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <field name="image" widget="image" filename="image_filename" class="oe_form_field_image"/>
+                    </div>
+                    
+                </div>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+
+
+    <!-- Vista de Búsqueda para Funciones -->
+    <record id="view_search_cine_funcion" model="ir.ui.view">
+        <field name="name">cine.funcion.search</field>
+        <field name="model">cine.funcion</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Funciones">
+                <field name="name"/>
+                <field name="movie_id"/>
+                <field name="sala_id"/>
+                <field name="start_time"/>
+                <filter string="Activo" name="activo" domain="[('state','=','activo')]"/>
+                <filter string="Pendiente" name="pendiente" domain="[('state','=','pendiente')]"/>
+                <filter string="Ocupado" name="ocupado" domain="[('state','=','ocupado')]"/>
+            </search>
+        </field>
+    </record>
+</data>
+</odoo>

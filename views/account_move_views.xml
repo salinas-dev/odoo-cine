@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="view_account_move_form_inherit_ticket" model="ir.ui.view">
+            <field name="name">account.move.form.inherit.ticket</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="generate_ticket" type="object" string="Generar Ticket" class="btn btn-primary" icon="fa-ticket"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

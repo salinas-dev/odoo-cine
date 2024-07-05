@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_cine_root" name="Cine" sequence="10"/>
+    <menuitem id="menu_cine_movie" name="Peliculas" parent="menu_cine_root" action="action_cine_movie"/>
+    <menuitem id="menu_cine_salas" name="Salas" parent="menu_cine_root" action="action_cine_sala"/>
+    <menuitem id="menu_cine_funcion" name="Funciones" parent="menu_cine_root" action="action_cine_funcion"/>
+   <!-- <menuitem id="menu_cine_wizard" name="Wizard Simple" parent="menu_cine_root" action="action_simple_wizard"/>-->
+</odoo>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Acción para Salas -->
+    <record id="action_cine_sala" model="ir.actions.act_window">
+        <field name="name">Salas</field>
+        <field name="res_model">cine.sala</field>
+        <field name="view_mode">tree,form,kanban,search</field>
+    </record>
+
+<!-- Vista tree para Salas -->
+<record id="view_cine_sala_tree" model="ir.ui.view">
+    <field name="name">cine.sala.tree</field>
+    <field name="model">cine.sala</field>
+    <field name="arch" type="xml">
+        <tree string="Salas">
+            <field name="name"/>
+            <field name="capacity"/>
+            <field name="precio_entrada_adulto"/>
+            <field name="precio_entrada_nino"/>
+            <field name="existencias_boletos"/>
+        </tree>
+    </field>
+</record>
+
+
+    <!-- Vista form para Salas -->
+    <record id="view_cine_sala_form" model="ir.ui.view">
+        <field name="name">cine.sala.form</field>
+        <field name="model">cine.sala</field>
+        <field name="arch" type="xml">
+            <form string="Sala">
+                <sheet>
+                    <notebook>
+                        <page name="name" string="Informacion">
+                            <group>
+                                <field name="name"/>
+                                <field name="capacity"/>
+                                <field name="precio_entrada_adulto"/>
+                                <field name="precio_entrada_nino"/>
+                                <field name="existencias_boletos"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Kanban para Salas -->
+    <record id="view_cine_sala_kanban" model="ir.ui.view">
+        <field name="name">cine.sala.kanban</field>
+        <field name="model">cine.sala</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <field name="name"/><br/>
+                                <field name="capacity"/><br/>
+                                <field name="precio_entrada_adulto"/><br/>
+                                <field name="precio_entrada_nino"/><br/>
+                                <field name="existencias_boletos"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista Búsqueda para Salas -->
+    <record id="view_cine_sala_search" model="ir.ui.view">
+        <field name="name">cine.sala.search</field>
+        <field name="model">cine.sala</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Nombre" name="group_by_name" context="{'group_by': 'name'}"/>
+                    <filter string="Capacidad" name="group_by_capacity" context="{'group_by': 'capacity'}"/>
+                    <filter string="Precio de entrada adulto" name="group_by_precio_entrada_adulto" context="{'group_by': 'precio_entrada_adulto'}"/>
+                    <filter string="Precio de entrada niño" name="group_by_precio_entrada_nino" context="{'group_by': 'precio_entrada_nino'}"/>
+                    <filter string="Existencias de boletos" name="group_by_existencias_boletos" context="{'group_by': 'existencias_boletos'}"/>
+                </group>
+                <field name="name" string="Nombre"/>
+                <field name="capacity" string="Capacidad"/>
+                <field name="precio_entrada_adulto" string="Precio de entrada adulto"/>
+                <field name="precio_entrada_nino" string="Precio de entrada niño"/>
+                <field name="existencias_boletos" string="Existencias de boletos"/>
+            </search>
+        </field>
+    </record>
+</odoo>

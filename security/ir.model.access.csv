@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cine_movie,cine.movie,model_cine_movie,,1,1,1,1
+access_cine_sala,cine.sala,model_cine_sala,,1,1,1,1
+access_cine_funcion,cine.funcion,model_cine_funcion,base.group_user,1,1,1,1

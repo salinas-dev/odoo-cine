@@ -1,0 +1,14 @@
+.ticket {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.ticket h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.ticket p {
+    font-size: 14px;
+    margin: 5px 0;
+}

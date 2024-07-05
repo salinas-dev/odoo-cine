@@ -1,0 +1,4 @@
+id,name,category_id:id,implied_ids:id
+group_cine_user,User: Cine,category_cine,
+group_cine_manager,Manager: Cine,category_cine,
+group_cine_sales,Sales: Cine,category_cine,

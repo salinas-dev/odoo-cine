@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form_inherited" model="ir.ui.view">
+            <field name="name">sale.order.form.inherited</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//header" position="inside">
+                        <button name="action_open_funciones" string="Ver Funciones de Cine" type="object" class="btn-primary"/>
+                        <!--<button name="action_add_product_to_order" string="Agregar Producto" type="object" class="btn-primary"/>-->
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>
